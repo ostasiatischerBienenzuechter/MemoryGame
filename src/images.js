@@ -9,35 +9,43 @@ import img8 from "./assets/img8.jpg";
 
 export const IMAGES = [
   {
-    id: 1,
+    num: 1,
+    isMatched: false,
     img: img1,
   },
   {
-    id: 2,
+    num: 2,
+    isMatched: false,
     img: img2,
   },
   {
-    id: 3,
+    num: 3,
+    isMatched: false,
     img: img3,
   },
   {
-    id: 4,
+    num: 4,
+    isMatched: false,
     img: img4,
   },
   {
-    id: 5,
+    num: 5,
+    isMatched: false,
     img: img5,
   },
   {
-    id: 6,
+    num: 6,
+    isMatched: false,
     img: img6,
   },
   {
-    id: 7,
+    num: 7,
+    isMatched: false,
     img: img7,
   },
   {
-    id: 8,
+    num: 8,
+    isMatched: false,
     img: img8,
   },
 ];

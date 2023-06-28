@@ -1,11 +1,11 @@
 import Board from "./components/Board";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <Board />
-    </div>
+    <>
+      <div>
+        <Board />
+      </div>
+    </>
   );
 }
-
-export default App;
