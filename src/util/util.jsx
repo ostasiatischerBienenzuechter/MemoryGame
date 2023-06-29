@@ -1,10 +1,19 @@
-export const shuffleImages = (IMAGES, setCards) => {
+export const shuffleImages = (
+  IMAGES,
+  setCards,
+  setTurns,
+  setFirstChoice,
+  setSecondChoice
+) => {
   let shuffledImages = [...IMAGES, ...IMAGES].map((img, idx) => ({
     ...img,
     id: idx + 1,
   }));
 
   setCards(shuffleFisherYates(shuffledImages));
+  setTurns(0);
+  setFirstChoice(null);
+  setSecondChoice(null);
 };
 
 function shuffleFisherYates(arr) {

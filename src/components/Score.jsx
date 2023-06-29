@@ -1,10 +1,5 @@
-const Score = ({ score, tries }) => {
-  return (
-    <div>
-      <p>Score: {score}</p>
-      <p>Tries: {tries}</p>
-    </div>
-  );
+const Score = ({ turns }) => {
+  return <div>{turns}</div>;
 };
 
 export default Score;

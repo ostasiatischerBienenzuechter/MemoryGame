@@ -1,78 +1,63 @@
 import { useEffect, useState } from "react";
-import { shuffleImages } from "../util/util";
-import { IMAGES } from "../images";
 import Card from "./Card";
-import Score from "./Score";
-import GameOverDisplay from "./GameOverDisplay";
 
-const Board = () => {
-  const [cards, setCards] = useState([]);
-  const [selectedCards, setSelectedCards] = useState([]);
-  const [score, setScore] = useState(0);
-  const [tries, setTries] = useState(0);
-  const [gameOver, setIsGameOver] = useState(false);
+const Board = ({
+  cards,
+  setCards,
+  setTurns,
+  firstChoice,
+  secondChoice,
+  setFirstChoice,
+  setSecondChoice,
+}) => {
+  const [disabled, setDisabled] = useState(false);
 
-  useEffect(() => {
-    shuffleImages(IMAGES, setCards);
-  }, []);
-
-  useEffect(() => {
-    if (selectedCards.length === 2) {
-      setTimeout(() => {
-        setSelectedCards([]);
-      }, 1000);
-      checkSelectedCards();
-    }
-  }, [selectedCards]);
+  const handleChoice = (card) => {
+    firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+  };
 
   useEffect(() => {
-    if (score === IMAGES.length) {
-      setTimeout(() => {
-        setIsGameOver(true);
-      }, 1000);
+    if (firstChoice && secondChoice) {
+      setDisabled(true);
+      if (firstChoice.num === secondChoice.num) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.num === firstChoice.num) {
+              return { ...card, isMatched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+        resetTurn();
+      } else {
+        setTimeout(() => {
+          resetTurn();
+        }, 1000);
+      }
     }
-  }, [score]);
+  }, [firstChoice, secondChoice]);
 
-  const checkSelectedCards = () => {
-    if (selectedCards[0].num === selectedCards[1].num) {
-      setScore((score) => score + 1);
-      let updatedCards = cards.map((card) => {
-        if (card.num === selectedCards[0].num) {
-          return { ...card, isMatched: true };
-        }
-        return card;
-      });
-
-      setCards(updatedCards);
-    } else {
-      console.log("no match");
-    }
-    setTries((tries) => tries + 1);
+  const resetTurn = () => {
+    setFirstChoice(null);
+    setSecondChoice(null);
+    setTurns((turns) => turns + 1);
+    setDisabled(false);
   };
 
   return (
     <>
-      {gameOver && (
-        <GameOverDisplay
-          score={score}
-          setScore={setScore}
-          tries={tries}
-          setTries={setTries}
-          setIsGameOver={setIsGameOver}
-          setCards={setCards}
-        />
-      )}
       <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-midBrown from-10% via-lightTeal to-darkBrown">
-        <div className="text-3xl mb-6">
-          <Score score={score} tries={tries} />
-        </div>
         <div className="grid grid-cols-4 gap-4 bg-black p-4">
           {cards.map((card) => (
             <Card
               key={card.id}
               card={card}
-              selectedCards={selectedCards}
-              setSelectedCards={setSelectedCards}
+              handleChoice={handleChoice}
+              isFlipped={
+                card === firstChoice || card === secondChoice || card.isMatched
+              }
+              disabled={disabled}
             />
           ))}
         </div>
