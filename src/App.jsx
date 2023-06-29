@@ -1,7 +1,7 @@
 import Board from "./components/Board";
 import { useState, useEffect } from "react";
-import { shuffleImages } from "../util/util";
-import { IMAGES } from "../images";
+import { shuffleImages } from "./util/util";
+import { IMAGES } from "./images";
 import Score from "./components/Score.jsx";
 
 export default function App() {

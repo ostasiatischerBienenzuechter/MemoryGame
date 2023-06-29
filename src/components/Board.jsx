@@ -16,27 +16,30 @@ const Board = ({
     firstChoice ? setSecondChoice(card) : setFirstChoice(card);
   };
 
-  useEffect(() => {
-    if (firstChoice && secondChoice) {
-      setDisabled(true);
-      if (firstChoice.num === secondChoice.num) {
-        setCards((prevCards) => {
-          return prevCards.map((card) => {
-            if (card.num === firstChoice.num) {
-              return { ...card, isMatched: true };
-            } else {
-              return card;
-            }
+  useEffect(
+    () => {
+      if (firstChoice && secondChoice) {
+        setDisabled(true);
+        if (firstChoice.num === secondChoice.num) {
+          setCards((prevCards) => {
+            return prevCards.map((card) => {
+              if (card.num === firstChoice.num) {
+                return { ...card, isMatched: true };
+              } else {
+                return card;
+              }
+            });
           });
-        });
-        resetTurn();
-      } else {
-        setTimeout(() => {
           resetTurn();
-        }, 1000);
+        } else {
+          setTimeout(() => {
+            resetTurn();
+          }, 1000);
+        }
       }
-    }
-  }, [firstChoice, secondChoice]);
+    },
+    [firstChoice, secondChoice] // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   const resetTurn = () => {
     setFirstChoice(null);
