@@ -2,7 +2,6 @@ import Board from "./components/Board";
 import { useState, useEffect } from "react";
 import { shuffleImages } from "./util/util";
 import { IMAGES } from "./images";
-import Score from "./components/Score.jsx";
 
 export default function App() {
   const [cards, setCards] = useState([]);
@@ -17,7 +16,6 @@ export default function App() {
   return (
     <>
       <div>
-        <Score turns={turns} />
         <Board
           cards={cards}
           setCards={setCards}
@@ -28,19 +26,6 @@ export default function App() {
           setFirstChoice={setFirstChoice}
           setSecondChoice={setSecondChoice}
         />
-        <button
-          onClick={() =>
-            shuffleImages(
-              IMAGES,
-              setCards,
-              setTurns,
-              setFirstChoice,
-              setSecondChoice
-            )
-          }
-        >
-          Restart Game
-        </button>
       </div>
     </>
   );

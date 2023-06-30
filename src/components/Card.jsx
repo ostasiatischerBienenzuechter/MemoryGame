@@ -12,14 +12,14 @@ const Card = ({ card, handleChoice, isFlipped, disabled }) => {
       className={
         isFlipped
           ? "card open pointer-events-none transition ease-in-out delay-200"
-          : "flex items-center justify-center h-44 w-44 relative cursor-pointer card transition ease-in-out"
+          : "flex items-center justify-center md:h-44 md:w-44 relative cursor-pointer card transition ease-in-out"
       }
     >
       <div className="object-cover">
         <img
           src={card.img}
           alt=""
-          className=" border-4 border-white w-44 h-44"
+          className=" border-4 border-white md:w-44 md:h-44"
         />
       </div>
       <div

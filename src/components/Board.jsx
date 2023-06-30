@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import Score from "./Score.jsx";
+import ResetButton from "./ResetButton";
 
 const Board = ({
   cards,
   setCards,
+  turns,
   setTurns,
   firstChoice,
   secondChoice,
@@ -50,8 +53,9 @@ const Board = ({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-midBrown from-10% via-lightTeal to-darkBrown">
-        <div className="grid grid-cols-4 gap-4 bg-black p-4">
+      <div className="flex flex-col items-center justify-center h-screen">
+        <Score turns={turns} />
+        <div className="rounded-xl grid grid-cols-4 gap-4  p-4">
           {cards.map((card) => (
             <Card
               key={card.id}
@@ -64,6 +68,12 @@ const Board = ({
             />
           ))}
         </div>
+        <ResetButton
+          setCards={setCards}
+          setTurns={setTurns}
+          setFirstChoice={setFirstChoice}
+          setSecondChoice={setSecondChoice}
+        />
       </div>
     </>
   );
