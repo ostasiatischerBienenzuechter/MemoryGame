@@ -14,19 +14,17 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <div>
-        <Board
-          cards={cards}
-          setCards={setCards}
-          turns={turns}
-          setTurns={setTurns}
-          firstChoice={firstChoice}
-          secondChoice={secondChoice}
-          setFirstChoice={setFirstChoice}
-          setSecondChoice={setSecondChoice}
-        />
-      </div>
-    </>
+    <div>
+      <Board
+        cards={cards}
+        setCards={setCards}
+        turns={turns}
+        setTurns={setTurns}
+        firstChoice={firstChoice}
+        secondChoice={secondChoice}
+        setFirstChoice={setFirstChoice}
+        setSecondChoice={setSecondChoice}
+      />
+    </div>
   );
 }
