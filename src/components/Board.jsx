@@ -53,7 +53,7 @@ const Board = ({
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center mx-auto w-full h-full">
         <Score turns={turns} />
         <div className="rounded-xl grid grid-cols-4 gap-4  p-4">
           {cards.map((card) => (
